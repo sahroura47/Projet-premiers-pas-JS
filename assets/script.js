@@ -20,9 +20,50 @@ const slides = [
 const goToNext = document.querySelector(".arrow_right");
 const goToBack = document.querySelector(".arrow_left");
 const dotContainer= document.querySelector(".dots");
-const dots= [];
+const slideImg= document.querySelector(".banner-img");
+const slideText= document.querySelector("#banner p");
+let counter= 0
+
+//set des dots//
 for (let i=0; i<slides.length; i++){
 	const dot = document.createElement("div");
 	dot.classList.add("dot");
     dotContainer.appendChild(dot); 
 }
+dotContainer.children[0].classList.add("dot_selected");
+
+
+// fonction flèche droite//
+
+function nextSlide() {
+	counter++;
+	setCounter()
+	displaySlide(counter);
+}
+goToNext.addEventListener("click", () => nextSlide());
+//fonction flèche gauche//
+
+function prevSlide (){
+	counter--;
+	setCounter()
+	displaySlide(counter);
+}
+
+function displaySlide(index) {
+    slideImg.src="./assets/images/slideshow/"+slides[index].image
+	console.log('display slide : '+index);
+	slideText.innerHTML=slides[index].tagLine;
+	dotContainer.querySelector(".dot_selected").classList.remove("dot_selected")
+	dotContainer.children[index].classList.add("dot_selected");
+}
+//fonction de calcul counter//
+function setCounter(){
+	if (counter>slides.length-1){
+		counter=0
+	}
+	else if (counter<0){
+		counter=slides.length-1
+	}
+}
+
+goToBack.addEventListener("click",() => prevSlide() );
