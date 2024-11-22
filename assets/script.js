@@ -51,7 +51,7 @@ function prevSlide (){
 	setCounter()
 	displaySlide(counter);
 }
-// focntion pour afficher les slides//
+// fonction pour afficher les slides//
 function displaySlide(index) {
 	const slide = slides[index];
     slideImg.src="./assets/images/slideshow/"+slide.image
